@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_address: MyString
+  start: 2013-04-20 16:42:33
+  end: 2013-04-20 16:42:33
+  days: MyString
+  cost: 1.5
+  instruction_language: MyString
+
+two:
+  site_address: MyString
+  start: 2013-04-20 16:42:33
+  end: 2013-04-20 16:42:33
+  days: MyString
+  cost: 1.5
+  instruction_language: MyString

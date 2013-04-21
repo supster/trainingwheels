@@ -8,6 +8,7 @@ class CreateInstitutions < ActiveRecord::Migration
       t.string :phone
       t.string :url
       t.integer :institution_type
+      t.boolean :ell
 
       t.timestamps
     end

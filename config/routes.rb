@@ -1,4 +1,28 @@
 Trainingwheels::Application.routes.draw do
+  get "search/index"
+
+  get "literacy/index"
+
+  get "training/index"
+
+  get "ged/index"
+
+  get "english/index"
+
+  get "welcome/index"
+
+  match "home" => "welcome/index"
+
+  match "english" => "english#index"
+
+  match "ged" => "ged/index"
+
+  match "training" => "training#index"
+
+  match "literacy" => "literacy#index"
+
+  match "search" => "search#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +72,7 @@ Trainingwheels::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

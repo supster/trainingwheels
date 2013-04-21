@@ -15,3 +15,40 @@
 .category{
   display: block;
 }
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    vertical-align: top;
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/*map*/
+#map-canvas { 
+  width: 350px; 
+  height: 300px;
+  border: 1px solid} 
+
+#map {
+  width: 400px; 
+  height: 300px;
+  border: 1px solid
+} 
+
+#map_image {
+  position: fixed;
+  top: 30px; 
+  left: 0; 
+  background-image:url('/assets/MapScreen.png');
+  background-size: cover;
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}

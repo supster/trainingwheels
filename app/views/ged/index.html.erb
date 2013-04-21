@@ -1,2 +1,100 @@
-<h1>Ged#index</h1>
-<p>Find me in app/views/ged/index.html.erb</p>
+<% content_for :head do %>
+	<%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCVyEbVVhfHMiI6G4P0SDnxvSCp8bcCMac&sensor=false' %>
+
+	<script type="text/javascript">
+	//alert("JS working");
+		  var geoCoderResult;
+
+			  function codeAddress(sAddress) {
+			  	geocoder = new google.maps.Geocoder();
+				var address = sAddress;
+			
+			//alert(sAddress);
+		    geocoder.geocode( { 'address': address }, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+				geoCoderResult = results[0];
+		      } else {
+		        $("#map").html("Google Geocode was not successful for the following reason: <br> " + status);
+		      }
+		    });
+		  }
+
+		  function showMap(){
+		  	codeAddress("170 West End Ave, new york NY");
+		    var mapOptions = {
+		      //center: geoCoderResult.geometry.location,
+		      zoom: 13,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP,
+		      mapMarker: true
+		    };
+		    
+		    var map = new google.maps.Map(document.getElementById("map"),
+		        mapOptions);
+
+		    
+		    var marker = new google.maps.Marker({
+		        map: map, 
+		        //position: geoCoderResult.geometry.location
+		    });	
+			  }
+
+		  function initialize() {
+		        
+		  	showMap();
+
+		  }
+		  
+		  google.maps.event.addDomListener(window, 'load', initialize);
+
+
+		  function switchButton(btn){
+		  	if(btn.value == "Map"){
+		  		btn.value = "List";
+		  		document.getElementById('map_image').style.display = "block";
+		  		// $('#map_image');
+		  		document.getElementById('listView').style.display = "none";
+
+		  	}else{
+		  		btn.value = "Map";
+		  		document.getElementById('map_image').style.display = "none";
+		  		// $('#map_image');
+		  		document.getElementById('listView').style.display = "block";
+		  	}
+
+		  }
+	
+	</script>
+<% end %>
+<div class="container">
+	<div class="navbar navbar-fixed-top navbar-fluid">
+		<div class="navbar-inner">
+			<div class="container">
+				<%= link_to "Back", home_path, class: "btn btn-warning btn-small pull-left" %> 
+				<div class="brand" style="margin-left:60px">Locations Near You</div>
+				<input type="button" value="Map" class="btn btn-warning btn-small pull-right" onclick="javaScript:switchButton(this);"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div>
+
+</div>
+<!-- Map 
+
+<div id='map'></div>
+
+ ######### -->
+<div id="map_image" style="display:none">
+test
+</div>
+
+<div id="listView">
+	<ul class="users">
+		<% @institutions.each do |institution| %>
+			<li>
+				<%= link_to institution.name, institution %>
+			</li>
+		<% end %>
+	</ul>
+</div>

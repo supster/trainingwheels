@@ -1,0 +1,72 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCVyEbVVhfHMiI6G4P0SDnxvSCp8bcCMac&sensor=false' %>
+	<script type="text/javascript">
+	
+  	  function codeAddress() {
+ 	  	geocoder = new google.maps.Geocoder();
+   		var address = "<%=  @institution.address + ' ' + @institution.city + ', ' + @institution.state_abbr %>";
+		
+	    geocoder.geocode( { 'address': address }, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+			showMap(results[0]);
+	      } else {
+	        $("#map-canvas").html("Google Geocode was not successful for the following reason: <br> " + status);
+	      }
+	    });
+	  }
+
+	  function showMap(geoCodeResult){
+	    var mapOptions = {
+	      center: geoCodeResult.geometry.location,
+	      zoom: 13,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	      mapMarker: true
+	    };
+	    
+	    var map = new google.maps.Map(document.getElementById("map-canvas"),
+	        mapOptions);
+    		  	
+        var marker = new google.maps.Marker({
+            map: map, 
+            position: geoCodeResult.geometry.location
+        });	  		  	
+	  }
+	
+	  function initialize() {
+	        
+	  	codeAddress();
+
+	  }
+	  
+	  google.maps.event.addDomListener(window, 'load', initialize);
+	</script>  
+<% end %>
+<div class="container">
+	<div class="navbar navbar-fixed-top navbar-fluid">
+		<div class="navbar-inner">
+			<div class="container">
+				<%= link_to "Back", ged_index_path, class: "btn btn-warning btn-small pull-left" %> 
+				<div class="brand" style="margin-left:60px">&nbsp;&nbsp;&nbsp;Make it Happen</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<h4>
+		<%= @institution.name %>		
+	</h4>
+	<div class="row-fluid">
+		<div class="span7">
+			<div>
+				<%= @institution.description %>
+				
+				<%= render "address"%>
+				<%= link_to @institution.url, @institution.url, target: "_blank" unless @institution.url.nil? %></br>
+				Phone Number: <%= @institution.phone %>
+			</div>
+		</div><br/>
+		<div class="span5">	
+			<div id="map-canvas"></div>
+		</div>
+	</div>
+</div>

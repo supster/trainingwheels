@@ -1,18 +1,35 @@
-<h1>Need a job?</h1>
 
+<div class="container" style="position: fixed; top: 100px;">
+	<div class="container">
+	</div>
+		<center><%= image_tag "homescreenicon.png", class: "brand" %></center><br/>
+		<center>
+		<form>
+				<table>
+					<tr>
+						<td>
+							<span style="color: inherit; font-family: inherit; font-size: 26px;">I want to:&nbsp;
+						</td>
+						<td>
+				<select style="font-family: inherit;"><option value=""></option><option value="Find Work Now">Find Work Now</option><option value="Get My GED">Get My GED</option><option value="Improve My English">Improve My English</option><option value="Learn New Skillse">Learn New Skills</option></select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span style="color: inherit; font-family: inherit; font-size: 26px;">Near:</span>
+						</td>
+						<td>
+<div class="controls">
+					<input type="text" placeholder="Address or Zip Code"><div class="control-group">
+						<div class="controls">
+						</div>
+					</div>
+				</div></span>
 
-<h2>Your choice. Your time. Your neighborhood. Your price.</h2>
-
-<p>Find free or low-cost job training programs near you.</p>
-
-<h2>I need...</h2>
-
-<%= link_to "Look for Work", "search#index", :class => "category"%>
-
-<%= link_to "My GED", "ged", :class => "category"%>
-
-<%= link_to "to Learn English", "english", :class => "category"%>
-
-<%= link_to "Reading Help", "literacy", :class => "category"%>
-
-<p>Find me in app/views/welcome/index.html.erb</p>
+						</td>
+					</tr>
+				</table>
+				<%= link_to "  Make it happen!  ", ged_index_path, class: "btn btn-warning btn-large" %> 
+		</form>
+		</center>
+</div>

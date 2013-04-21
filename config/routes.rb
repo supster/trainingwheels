@@ -11,11 +11,11 @@ Trainingwheels::Application.routes.draw do
 
   get "welcome/index"
 
-  match "home" => "welcome/index"
+  match "home" => "welcome#index"
 
   match "english" => "english#index"
 
-  match "ged" => "ged/index"
+  match "ged" => "ged#index"
 
   match "training" => "training#index"
 
@@ -23,6 +23,7 @@ Trainingwheels::Application.routes.draw do
 
   match "search" => "search#index"
 
+  resources :institution
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

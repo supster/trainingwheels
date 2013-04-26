@@ -34,35 +34,4 @@ namespace :db do
     end
   end
  end
-    
- #populate users
- def make_users
-   user = User.create!(name: "Supatra Indharameesup", email: "superspt@gmail.com", 
-                password: "oil123", password_confirmation: "oil123")
-                
-   19.times do |n|
-     name = Faker::Name.name
-     email = "example#{n+1}@rails.com"
-     password = "password"
-     User.create!(name: name, email: email, password: password, password_confirmation: password)
-   end
- end
- 
- #populate reviews
- def make_reviews
-  users = User.all(limit: 20)
-  #vendors = Vendor.all(limit: 60)
-  users.each do |user|
-    #vendors.each do |vendor|
-      for i in 1..40
-        review_text = Faker::Lorem.paragraph(3)
-        review_score = [1,2,3,4,5].sample
-        review = user.reviews.build(review_text: review_text, review_score: review_score) 
-        review.vendor_id = (1..100).to_a.sample
-        review.save!
-        end
-    #end
-  end
- end
-
 end
